@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  SOME_VAR: ${{ github.ref_type }}--${{ secrets.env_secret }}--${{ env.env_var }}
+  SOME_VAR: ${{ github.ref_type }}--${{ secrets.env_secret }}--${{ vars.env_var }}
 
 jobs:
   first:
@@ -13,9 +13,8 @@ jobs:
       - name: First step
         run: |
           echo SOME_VAR = $SOME_VAR
-          echo SOME_VAR interpolated = ${{ SOME_VAR }}
-          echo env_secret = ${{ secrets.env_secret }}
-          echo ENV_SECRET = ${{ secrets.ENV_SECRET }}
-          echo env_var = ${{ env.env_var }}
-          echo ENV_VAR = ${{ env.ENV_VAR }}
-          echo $secrets.env_secret = ${{ secrets.env_secret }}
+          echo env.SOME_VAR interpolated = ${{ env.SOME_VAR }}
+          echo secrets.env_secret = ${{ secrets.env_secret }}
+          echo secrets.ENV_SECRET = ${{ secrets.ENV_SECRET }}
+          echo vars.env_var = ${{ vars.env_var }}
+          echo vars.ENV_VAR = ${{ vars.ENV_VAR }}

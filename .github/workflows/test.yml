@@ -6,7 +6,8 @@ on:
 env:
   FIRST_VAR: first var content
   SECOND_VAR: second var content
-  SOME_VAR: ${{ github.ref_type }} -- $FIRST_VAR -- ${{ SECOND_VAR }}
+  SOME_VAR: ${{ github.ref_type }} -- $FIRST_VAR -- ${{ env.SECOND_VAR }} -- $THIRD_VAR
+  THIRD_VAR: third var content
   
 jobs:
   first:

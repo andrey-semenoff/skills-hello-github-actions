@@ -3,9 +3,12 @@ name: Test flow
 on:
   workflow_dispatch:
 
+env:
+  SOME_VAR: ${{ github.ref_type }}--${{ secrets.test }}
+
 jobs:
   first:
     runs-on: ubuntu-latest
     steps:
       - name: First step
-        run: echo 123
+        run: echo $SOME_VAR

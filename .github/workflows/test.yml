@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: First step
         run: |
-          echo ${{ github.job }} -> ${{ jobs.first.steps[0].name }}
+          echo ${{ github.job }} -> ${{ github.jobs.first.steps[0].name }}
           echo SOME_VAR = $SOME_VAR
   second:
     runs-on: ubuntu-latest
@@ -24,7 +24,7 @@ jobs:
         env:
           SOME_VAR: value redefined on step level
         run: |
-          echo ${{ github.job }} -> ${{ jobs.second.steps[0].name }}
+          echo ${{ github.job }} -> ${{ github.jobs.second.steps[0].name }}
           echo SOME_VAR = $SOME_VAR
   third:
     runs-on: ubuntu-latest
@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: Third step
         run: |
-          echo ${{ github.job }} -> ${{ jobs.third.steps[0].name }}
+          echo ${{ github.job }} -> ${{ github.jobs.third.steps[0].name }}
           echo SOME_VAR = $SOME_VAR  
   fourth:
     runs-on: ubuntu-latest
@@ -44,7 +44,7 @@ jobs:
         env:
           SOME_VAR: value redefined on step level of job #4
         run: |
-          echo ${{ github.job }} -> ${{ jobs.fourth.steps[0].name }}
+          echo ${{ github.job }} -> ${{ github.jobs.fourth.steps[0].name }}
           echo SOME_VAR = $SOME_VAR
   fifth:
     runs-on: ubuntu-latest

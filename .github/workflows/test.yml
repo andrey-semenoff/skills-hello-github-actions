@@ -15,8 +15,38 @@ jobs:
     steps:
       - name: First step
         run: |
+          echo ${{ github.job }} -> ${{ step.name }}
           echo SOME_VAR = $SOME_VAR
   second:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Second step
+        env:
+          SOME_VAR: value redefined on step level
+        run: |
+          echo ${{ github.job }} -> ${{ step.name }}
+          echo SOME_VAR = $SOME_VAR
+  third:
+    runs-on: ubuntu-latest
+    env:
+      SOME_VAR: value redefined on job #3 level
+    steps:
+      - name: Third step
+        run: |
+          echo ${{ github.job }} -> ${{ step.name }}
+          echo SOME_VAR = $SOME_VAR  
+  fourth:
+    runs-on: ubuntu-latest
+    env:
+      SOME_VAR: value redefined on job #4 level
+    steps:
+      - name: Fourth step
+        env:
+          SOME_VAR: value redefined on step level of job #4
+        run: |
+          echo ${{ github.job }} -> ${{ step.name }}
+          echo SOME_VAR = $SOME_VAR
+  fifth:
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
